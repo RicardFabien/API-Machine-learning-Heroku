@@ -31,7 +31,7 @@ class FeatureExtractor:
     """
     def __init__(self, data: pa.DataFrame, to_drop: list):
         data.drop(array(to_drop), axis=1, inplace=True)
-        return data
+
 
     """
         Input : pandas.DataFrame, feature list to drop
