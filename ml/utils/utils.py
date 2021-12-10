@@ -1,14 +1,19 @@
 from array import array
-
+import re
 import numpy as np
 import pandas as pa
 import sklearn
 import joblib
 
+target_word = "target"
+target_regex = "^(target[0-9]*)$"
+
 class DataHandler:
     """
     Get data from sources
     """
+
+
     def __init__(self):
         self.csvfile1 = None
         self.csvfile2 = None
@@ -30,7 +35,12 @@ class FeatureExtractor:
     Feature Extractor class
     """
     def __init__(self, data: pa.DataFrame, to_drop: list):
-        data.drop(array(to_drop), axis=1, inplace=True)
+        data = data.drop(array(to_drop), axis=1, inplace=True)
+
+        targets = data.filter(target_regex)
+        data.loc[:, ~data.columns.str.startswith('Test')]
+
+        return train_test_split()
 
 
     """
